@@ -2,12 +2,15 @@ import React, { Fragment } from "react";
 import { useState, useEffect } from "react";
 import Logo from "../../assets/images/logo.svg";
 import { Link } from "react-router-dom";
-import ButtonComponent from "../buttonComponent/buttonComponent";
 import { IoMenu } from "react-icons/io5";
 import { IoCloseSharp } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+
 import styles from "./main-navigation.module.css";
+import ButtonComponent from "../buttonComponent/buttonComponent";
 
 function MainNavigation(props) {
+  const navigate = useNavigate();
   const [windowWidth, setWindowWidth] = useState(undefined);
   const [isMenuBtnClicked, setIsMenuBtnClicked] = useState(false);
   const [session, setSession] = useState(false);
@@ -29,12 +32,14 @@ function MainNavigation(props) {
     setIsMenuBtnClicked(!isMenuBtnClicked);
   }
 
-  function loginBtnHandler(event) {
+  function signinBtnHandler(event) {
     event.preventDefault();
+    navigate("signin");
   }
 
-  function registerBtnHandler(event) {
+  function signupBtnHandler(event) {
     event.preventDefault();
+    navigate("signup");
   }
 
   function logoutBtnHandler(event) {
@@ -68,26 +73,23 @@ function MainNavigation(props) {
 
               <ul>
                 <li>
-                  <span>Dashboard</span>
+                  <Link to={"dashboard"}>Dashboard</Link>
                 </li>
                 <li>
-                  <span>Analysis statistics</span>
+                  <Link to={""}>Analysis statistics</Link>
                 </li>
                 <li>
-                  <span>Pricing</span>
+                  <Link to={""}>Pricing</Link>
                 </li>
               </ul>
             </div>
             {!session ? (
               <div className={styles.nav_right}>
+                <ButtonComponent text={"Sign Up"} handler={signupBtnHandler} />
                 <ButtonComponent
-                  text={"Sign Up"}
-                  handler={registerBtnHandler}
-                />
-                <ButtonComponent
-                  text={"Login"}
+                  text={"Signin"}
                   style={styles.button_transparent}
-                  handler={loginBtnHandler}
+                  handler={signinBtnHandler}
                 />
               </div>
             ) : (
@@ -114,7 +116,7 @@ function MainNavigation(props) {
               <ButtonComponent
                 text={"Try for free"}
                 style={styles.menu_option_btn_default}
-                handler={registerBtnHandler}
+                handler={signupBtnHandler}
               />
               <div className={styles.menu_btn} onClick={menuBtnHandler}>
                 {!isMenuBtnClicked ? (
@@ -145,14 +147,14 @@ function MainNavigation(props) {
                         {!session ? (
                           <div className={styles.menu_option_btn_container}>
                             <ButtonComponent
-                              text={"Login"}
+                              text={"Signin"}
                               style={styles.menu_option_btn_transparent}
-                              handler={loginBtnHandler}
+                              handler={signinBtnHandler}
                             />
                             <ButtonComponent
                               text={"Signup"}
                               style={styles.menu_option_btn_default}
-                              handler={registerBtnHandler}
+                              handler={signupBtnHandler}
                             />
                           </div>
                         ) : (

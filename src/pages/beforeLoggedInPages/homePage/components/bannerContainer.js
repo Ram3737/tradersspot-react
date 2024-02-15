@@ -1,9 +1,15 @@
 import ButtonComponent from "../../../../components/buttonComponent/buttonComponent";
 import CarouselComponent from "../../../../components/carousel/carousel";
-import styles from "./banner-container.module.css";
+import styles from "./bannerContainer.module.css";
+import { useNavigate } from "react-router-dom";
 
 function BannerContainer() {
-  function registerBtnHandler() {}
+  const navigate = useNavigate();
+
+  function signupBtnHandler(event) {
+    event.preventDefault();
+    navigate("signup");
+  }
 
   return (
     <section className={styles.banner_container}>
@@ -53,7 +59,7 @@ function BannerContainer() {
             <ButtonComponent
               text={"Sign up for free"}
               style={styles.banner_btn_container_signup}
-              handler={registerBtnHandler}
+              handler={signupBtnHandler}
             />
             <ButtonComponent
               text={"View our analyses"}

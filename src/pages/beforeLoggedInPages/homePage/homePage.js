@@ -1,4 +1,4 @@
-import BannerContainer from "./components/banner-container";
+import BannerContainer from "./components/bannerContainer";
 
 function HomePage(props) {
   return <BannerContainer />;

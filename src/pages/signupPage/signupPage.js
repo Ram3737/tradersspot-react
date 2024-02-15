@@ -1,7 +1,7 @@
-import styles from "../loginPage/login-container.module.css";
+import styles from "../signinPage/signinPage.module.css";
 import ButtonComponent from "../../components/buttonComponent/buttonComponent";
 
-function RegisterContainer() {
+function SignupPage() {
   return (
     <div className={styles.login_container_main}>
       <div className={styles.login_container_sub}>
@@ -77,4 +77,4 @@ function RegisterContainer() {
   );
 }
 
-export default RegisterContainer;
+export default SignupPage;

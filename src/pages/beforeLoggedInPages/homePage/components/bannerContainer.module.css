@@ -78,7 +78,7 @@
   height: auto;
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .banner_btn_container_signup {

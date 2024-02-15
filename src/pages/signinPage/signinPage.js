@@ -1,8 +1,8 @@
-import styles from "./login-container.module.css";
+import styles from "./signinPage.module.css";
 import ButtonComponent from "../../components/buttonComponent/buttonComponent";
 import { useState } from "react";
 
-function LoginContainer() {
+function SigninPage() {
   const [enteredEmail, setEnteredEmail] = useState(null);
   const [enteredPassword, setEnteredPassword] = useState(null);
 
@@ -58,4 +58,4 @@ function LoginContainer() {
   );
 }
 
-export default LoginContainer;
+export default SigninPage;

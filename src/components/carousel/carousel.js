@@ -13,6 +13,7 @@ const SliderCarousel = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
+            loading="lazy"
             src={SliderOne}
             alt="First slide"
             height={580}
@@ -22,6 +23,7 @@ const SliderCarousel = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
+            loading="lazy"
             src={SliderTwo}
             alt="Second slide"
             height={580}
@@ -31,6 +33,7 @@ const SliderCarousel = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
+            loading="lazy"
             src={SliderThree}
             alt="Third slide"
             height={580}

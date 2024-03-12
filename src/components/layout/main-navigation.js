@@ -5,15 +5,39 @@ import { Link } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import { IoCloseSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import styles from "./main-navigation.module.css";
+import { getAuthToken } from "../../utils/auth/auth";
 import ButtonComponent from "../buttonComponent/buttonComponent";
 
 function MainNavigation(props) {
   const navigate = useNavigate();
+  const tkn = localStorage.getItem("token");
   const [windowWidth, setWindowWidth] = useState(undefined);
   const [isMenuBtnClicked, setIsMenuBtnClicked] = useState(false);
-  const [session, setSession] = useState(false);
+  const [token, setToken] = useState();
+
+  // function getAllUsers(page = 1) {
+  //   if (token) {
+  //     CallGetApiServices(
+  //       `/user/get-all-users?page=${1}&courseType=${null}&ttu=${null}&paid=${null}`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       },
+  //       (response) => {
+  //         if (response.status === 200) {
+  //           console.log("users data", response.data);
+  //         }
+  //       },
+  //       (err) => {
+  //         console.log(err);
+  //       }
+  //     );
+  //   }
+  // }
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,6 +51,14 @@ function MainNavigation(props) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    setToken(tkn);
+  }, [tkn]);
+
+  // useEffect(() => {
+  //   getAllUsers();
+  // }, [token]);
 
   function menuBtnHandler() {
     setIsMenuBtnClicked(!isMenuBtnClicked);
@@ -44,6 +76,8 @@ function MainNavigation(props) {
 
   function logoutBtnHandler(event) {
     event.preventDefault();
+    localStorage.clear();
+    navigate("/");
   }
 
   // useEffect(() => {
@@ -76,31 +110,37 @@ function MainNavigation(props) {
                   <Link to={"dashboard"}>Dashboard</Link>
                 </li>
                 <li>
-                  <Link to={""}>Analysis statistics</Link>
+                  <Link to={"analysis-statistics"}>Analysis statistics</Link>
                 </li>
                 <li>
                   <Link to={""}>Pricing</Link>
                 </li>
               </ul>
             </div>
-            {!session ? (
-              <div className={styles.nav_right}>
-                <ButtonComponent text={"Sign Up"} handler={signupBtnHandler} />
-                <ButtonComponent
-                  text={"Signin"}
-                  style={styles.button_transparent}
-                  handler={signinBtnHandler}
-                />
-              </div>
-            ) : (
-              <div className={styles.nav_right}>
-                <ButtonComponent
-                  text={"Logout"}
-                  style={styles.button_transparent}
-                  handler={logoutBtnHandler}
-                />
-              </div>
-            )}
+            <AnimatePresence mode="wait">
+              {!token ? (
+                <div className={styles.nav_right} key="login">
+                  <ButtonComponent
+                    text={"Sign Up"}
+                    style={styles.button}
+                    handler={signupBtnHandler}
+                  />
+                  <ButtonComponent
+                    text={"Signin"}
+                    style={styles.button_transparent}
+                    handler={signinBtnHandler}
+                  />
+                </div>
+              ) : (
+                <div className={styles.nav_right} key="logout">
+                  <ButtonComponent
+                    text={"Logout"}
+                    style={styles.button_transparent}
+                    handler={logoutBtnHandler}
+                  />
+                </div>
+              )}
+            </AnimatePresence>
           </Fragment>
         ) : (
           <Fragment>
@@ -137,14 +177,16 @@ function MainNavigation(props) {
                             <span>Dashboard</span>
                           </div>
                           <div className={styles.menu_option}>
-                            <span>Analysis statistics</span>
+                            <Link to={"analysis-statistics"}>
+                              Analysis statistics
+                            </Link>
                           </div>
                           <div className={styles.menu_option}>
                             <span>Pricing</span>
                           </div>
                         </div>
 
-                        {!session ? (
+                        {!token ? (
                           <div className={styles.menu_option_btn_container}>
                             <ButtonComponent
                               text={"Signin"}

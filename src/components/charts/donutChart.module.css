@@ -1,0 +1,32 @@
+@media screen and (max-width: 730px) {
+  .responsive_container > div {
+    max-width: 135px !important;
+    margin: 0 auto;
+  }
+  .responsive_container div span {
+    font-size: 12px !important;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .responsive_container > div {
+    max-width: 90px !important;
+    margin: 0 auto;
+  }
+  .responsive_container div span {
+    font-size: 8px !important;
+  }
+  .responsive_container div ul {
+    width: max-content;
+  }
+}
+
+@media screen and (max-width: 366px) {
+  .responsive_container > div {
+    max-width: 109px !important;
+    margin: 0 auto;
+  }
+  /* .responsive_container div ul {
+    display: none;
+  } */
+}

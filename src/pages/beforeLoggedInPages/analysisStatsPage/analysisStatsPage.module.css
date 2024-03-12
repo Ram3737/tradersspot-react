@@ -1,0 +1,644 @@
+.analysis_page_container {
+  max-width: 1435px;
+  padding: 0.5rem 0.5rem;
+  height: fit-content;
+  display: flex;
+  gap: 0.5rem;
+  margin: auto;
+  background-color: var(--color-main-bg-2);
+}
+
+.visual_cont {
+  width: 18%;
+  height: fit-content;
+  padding: 0.5rem;
+  padding-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 0.7rem;
+  border-right: 1px solid var(--color-grey-700);
+  background-color: var(--color-main-bg);
+  position: relative;
+}
+
+.heading_cont {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.heading_cont > span {
+  margin-top: -2px;
+  color: var(--color-white);
+}
+
+.pie_chart_cont {
+  height: 12rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pie_chart_cont span {
+  margin-top: 0.8rem;
+}
+
+.line_chart_cont {
+  height: fit-content;
+  width: 100%;
+  padding: 5px;
+  /* background-color: #fff; */
+}
+
+.line_chart_cont_sub {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  /* background-color: aquamarine; */
+}
+.line_cont {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  /* background-color: yellow; */
+}
+
+.label_cont {
+  width: 88%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.label_cont_text {
+  font-size: var(--size-4);
+  color: var(--color-white);
+}
+
+.line_out {
+  width: 88%;
+  height: 12px;
+  padding: 1px;
+  display: flex;
+  align-items: center;
+  padding: 0 0.1rem;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: var(--color-transparent-bg);
+}
+
+.line_in {
+  width: 10%;
+  height: 80%;
+  border-radius: 5px;
+  background-color: var(--color-btn);
+}
+
+.gauge_chart_cont {
+  height: 9.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  /* background-color: green; */
+}
+
+.gauge_chart_cont span {
+  margin-top: 0.8rem;
+  color: var(--color-white);
+}
+
+.view_full_visual {
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -28px;
+  left: 160px;
+  cursor: pointer;
+}
+
+.analysis_cont {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 44.4rem;
+  /* background-color: blue; */
+}
+
+.analysis_cont_btn_cont {
+  padding: 0rem 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6%;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  /* background-color: antiquewhite; */
+}
+
+.analysis_filter_cont {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5%;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.filter_tab {
+  padding: 0.2rem 0.8rem;
+  border: 0.8px solid var(--color-btn);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter_tab span {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-mid-white);
+}
+
+.analysis_cont_sub {
+  width: 100%;
+  flex: 1;
+  padding: 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  overflow: auto;
+  /* background-color: brown; */
+}
+
+.analysis {
+  min-width: 20rem;
+  flex: 1;
+  height: fit-content;
+  padding: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+  background-color: var(--color-transparent-bg);
+}
+
+.analysis_name_area {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.name_card {
+  padding: 0.1rem 0.4rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-btn);
+}
+
+.name_card span {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-black);
+}
+.analysis_link_area {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.analysis_link_area img {
+  width: 100%;
+  height: 142px;
+}
+
+.analysis_link_area a {
+  font-size: 11px;
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--color-mid-white);
+}
+
+.analysis_result_area {
+  width: 100%;
+  height: 1rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.analysis_result_area span {
+  font-size: var(--size-3);
+  text-decoration: none;
+  color: var(--color-3);
+}
+
+.analysis_result {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+
+.analysis_result span {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-mid-white);
+}
+
+.pagination_cont {
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* background-color: azure; */
+}
+
+.pagination_cont_sub {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page_no_cont {
+  padding: 3px 6px;
+  background-color: #999;
+  border-radius: 5px;
+}
+
+.pagination_cont_btn {
+  padding: 4px 8px;
+}
+
+.result_text {
+  width: fit-content;
+  font-size: var(--size-3);
+  text-decoration: none;
+  color: var(--color-mid-white);
+  margin-top: -26px;
+}
+
+@media screen and (max-width: 20000px) {
+  .analysis:last-child {
+    min-width: 22.2rem;
+    flex-grow: 0;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .analysis:last-child {
+    min-width: 22.2rem;
+    flex-grow: 0;
+  }
+}
+
+@media screen and (max-width: 1410px) {
+  .analysis:last-child {
+    min-width: 21.5rem;
+    flex-grow: 0;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .analysis:last-child {
+    min-width: 20rem;
+    flex-grow: 0;
+  }
+}
+
+@media screen and (max-width: 1299px) {
+  .analysis:last-child {
+    flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 1073px) {
+  .visual_cont {
+    width: 12rem;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    gap: 0.2rem;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .analysis_page_container {
+    max-width: 1435px;
+    padding: 0rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: auto;
+    /* background-color: red; */
+  }
+  .visual_cont {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    gap: 0.5rem;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-right: 0px;
+    border-bottom: 1px solid var(--color-grey-700);
+    /* background-color: aqua; */
+  }
+  .visual_cont_charts {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  .pie_chart_cont {
+    height: 13rem;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0rem;
+    /* background-color: bisque; */
+  }
+
+  .line_chart_cont {
+    height: 13rem;
+    width: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    /* background-color: #fff; */
+  }
+
+  .line_chart_cont_sub {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    /* background-color: aquamarine; */
+  }
+  .line_cont {
+    width: 100%;
+    height: 11rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    /* background-color: yellow; */
+  }
+
+  .label_cont_text {
+    font-size: var(--size-4);
+    color: var(--color-mid-white);
+  }
+
+  .line_out {
+    width: 12px;
+    height: 88%;
+    padding: 1px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0.2rem 0rem;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: var(--color-transparent-bg);
+  }
+
+  .line_in {
+    width: 60%;
+    height: 50%;
+    border-radius: 5px;
+    background-color: var(--color-btn);
+  }
+  .gauge_chart_cont {
+    height: 13rem;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background-color: green; */
+  }
+  .gauge_chart_cont span {
+    font-size: 14px;
+    margin-top: 0.5rem;
+    color: var(--color-white);
+  }
+  .analysis_cont {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-main-bg-2);
+  }
+  .analysis_cont_btn_cont {
+    padding: 0.3rem 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6%;
+    margin-top: 0rem;
+    margin-bottom: 0.3rem;
+    /* background-color: antiquewhite; */
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .pie_chart_cont {
+    height: 10rem;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0rem;
+    /* background-color: bisque; */
+  }
+  .line_chart_cont {
+    height: 10rem;
+    width: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    /* background-color: #fff; */
+  }
+  .line_cont {
+    width: 100%;
+    height: 9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    /* background-color: yellow; */
+  }
+  .gauge_chart_cont {
+    height: 10rem;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background-color: green; */
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .pie_gauge_Container {
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .pie_chart_cont {
+    height: 6rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0rem;
+    /* background-color: bisque; */
+  }
+  .gauge_chart_cont {
+    height: 6rem;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background-color: green; */
+  }
+  .gauge_chart_cont span {
+    margin-top: 0.5rem;
+    font-size: 10px;
+  }
+  .line_chart_cont {
+    height: 12rem;
+    flex: 1;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    /* background-color: #fff; */
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .pie_gauge_Container {
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    margin-left: -1rem;
+  }
+}
+
+@media screen and (max-width: 366px) {
+  .pie_chart_cont {
+    height: 8rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0rem;
+    /* background-color: bisque; */
+  }
+  .gauge_chart_cont {
+    height: 5rem;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background-color: green; */
+  }
+  .gauge_chart_cont span {
+    display: none;
+  }
+  .line_chart_cont {
+    height: 13rem;
+    width: 100%;
+    padding: 5px;
+    margin-top: 0.3rem;
+    /* background-color: #fff; */
+  }
+
+  .line_chart_cont_sub {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    /* background-color: aquamarine; */
+  }
+  .line_cont {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    /* background-color: yellow; */
+  }
+
+  .label_cont {
+    width: 88%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .label_cont_text {
+    font-size: var(--size-4);
+    color: var(--color-mid-white);
+  }
+
+  .line_out {
+    width: 88%;
+    height: 12px;
+    padding: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 0.1rem;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: var(--color-transparent-bg);
+  }
+
+  .line_in {
+    width: 10%;
+    height: 80%;
+    border-radius: 5px;
+    background-color: var(--color-btn);
+  }
+}

@@ -62,7 +62,7 @@ body {
 
   margin: 0;
   height: 100%;
-  background-color: var(--color-main-bg);
+  background-color: var(--color-main-bg) !important;
   color: #252525;
   font-family: "Roboto", sans-serif;
 }

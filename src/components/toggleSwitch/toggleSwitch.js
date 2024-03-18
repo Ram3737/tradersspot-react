@@ -1,18 +1,25 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../store/context/authContextProvider";
 import Switch from "react-switch";
 import styles from "./toggleSwitch.module.css";
 
 const ToggleSwitch = () => {
+  const authCtx = useContext(AuthContext);
   const [isChecked, setIsChecked] = useState(false);
 
   const handleToggle = (checked) => {
     setIsChecked(checked);
+    if (authCtx.isValidToken) {
+      authCtx.setAnalysisToDisplayAfterLogin(checked);
+    } else {
+      authCtx.setAnalysisToDisplayBeforeLogin(checked);
+    }
   };
 
   return (
     <div className={styles.toggle_cont}>
-      <span>{isChecked ? "Paid" : "Free"}</span>
+      <span>{isChecked ? "Free" : "Paid"}</span>
       <Switch
         height={18}
         width={35}

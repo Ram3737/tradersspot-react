@@ -1,7 +1,17 @@
 import { motion } from "framer-motion";
+import { Digital } from "react-activity";
+import "react-activity/dist/library.css";
 import styles from "./buttonComponent.module.css";
 
-function ButtonComponent({ style, text, handler, loader, disabled }) {
+function ButtonComponent({
+  style,
+  text,
+  handler,
+  loader,
+  disabled,
+  indicator,
+  children,
+}) {
   return (
     <motion.button
       className={`${styles.button} ${style}`}
@@ -12,7 +22,9 @@ function ButtonComponent({ style, text, handler, loader, disabled }) {
       onClick={handler}
       disabled={disabled}
     >
-      {text}
+      {children && children}
+      {indicator && <Digital size={13} color="#151718" />}
+      {!indicator && text}
     </motion.button>
   );
 }

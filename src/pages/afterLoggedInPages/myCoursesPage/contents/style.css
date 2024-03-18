@@ -1,0 +1,64 @@
+.css-18bfqe > .ps-menu-button:hover {
+  background-color: #2b2d2d !important;
+}
+
+.css-1kuw0kv > .ps-menu-button:hover {
+  background-color: #2b2d2d !important;
+}
+
+.css-kowxrn > .ps-menu-button {
+  height: 100% !important;
+}
+.css-kowxrn > .ps-menu-button:hover {
+  background-color: #424242 !important;
+  border-left: 3px solid var(--color-btn);
+}
+
+.css-1mow5he > .ps-menu-button {
+  height: 100% !important;
+}
+
+.css-1mow5he > .ps-menu-button:hover {
+  background-color: #4e4d4d !important;
+  border-left: 3px solid var(--color-btn);
+}
+
+.ps-menuitem-root > a {
+  padding-left: 30px !important;
+}
+
+.css-iu1wa7 > .ps-menu-button {
+  height: 100% !important;
+}
+
+.css-iu1wa7 > .ps-menu-button:hover {
+  background-color: #4e4d4d !important;
+  border-left: 3px solid var(--color-btn);
+}
+
+.react-tabs__tab-list {
+  border-bottom: 1px solid var(--color-border);
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.react-tabs__tab {
+  color: var(--color-dark-white);
+}
+
+.react-tabs__tab--selected {
+  background: none !important;
+  border-color: var(--color-main-bg-2) !important;
+  color: var(--color-btn);
+  border-radius: 0px !important;
+}
+
+.react-tabs__tab:focus:after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  left: -4px;
+  right: -4px;
+  bottom: -0.8px !important;
+  background: var(--color-btn) !important;
+}

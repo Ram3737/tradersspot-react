@@ -161,17 +161,19 @@
 
 .filter_tab {
   padding: 0.2rem 0.8rem;
-  border: 0.8px solid var(--color-btn);
+  border: 0.8px solid var(--color-4);
   border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .filter_tab span {
   font-size: 11px;
   font-weight: 500;
-  color: var(--color-mid-white);
+  color: var(--color-white);
 }
 
 .analysis_cont_sub {
@@ -304,7 +306,44 @@
   margin-top: -26px;
 }
 
-@media screen and (max-width: 20000px) {
+.no_data_text {
+  color: var(--color-mid-white);
+  align-self: center;
+  margin: auto;
+}
+
+.upgrade_btn_main_cont {
+  width: 50%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.upgrade_btn_cont {
+  width: 100%;
+  height: 100%;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  background-color: var(--color-transparent-bg);
+}
+
+.upgrade_btn_cont_text {
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ddd;
+}
+
+/* @media screen and (max-width: 20000px) {
   .analysis:last-child {
     min-width: 22.2rem;
     flex-grow: 0;
@@ -336,7 +375,7 @@
   .analysis:last-child {
     flex-grow: 1;
   }
-}
+} */
 
 @media screen and (max-width: 1073px) {
   .visual_cont {
@@ -358,7 +397,6 @@
     flex-direction: column;
     gap: 1.5rem;
     margin: auto;
-    /* background-color: red; */
   }
   .visual_cont {
     width: 100%;
@@ -371,7 +409,6 @@
     border-bottom-right-radius: 20px;
     border-right: 0px;
     border-bottom: 1px solid var(--color-grey-700);
-    /* background-color: aqua; */
   }
   .visual_cont_charts {
     width: 100%;
@@ -385,7 +422,6 @@
     flex-direction: column;
     align-items: center;
     margin-top: 0rem;
-    /* background-color: bisque; */
   }
 
   .line_chart_cont {
@@ -394,7 +430,6 @@
     padding: 5px;
     display: flex;
     justify-content: center;
-    /* background-color: #fff; */
   }
 
   .line_chart_cont_sub {
@@ -405,7 +440,6 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    /* background-color: aquamarine; */
   }
   .line_cont {
     width: 100%;
@@ -415,7 +449,6 @@
     align-items: center;
     justify-content: center;
     gap: 0.3rem;
-    /* background-color: yellow; */
   }
 
   .label_cont_text {
@@ -449,7 +482,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    /* background-color: green; */
   }
   .gauge_chart_cont span {
     font-size: 14px;
@@ -469,7 +501,19 @@
     gap: 6%;
     margin-top: 0rem;
     margin-bottom: 0.3rem;
-    /* background-color: antiquewhite; */
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .upgrade_btn_main_cont {
+    width: 80%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
   }
 }
 
@@ -481,7 +525,6 @@
     flex-direction: column;
     align-items: center;
     margin-top: 0rem;
-    /* background-color: bisque; */
   }
   .line_chart_cont {
     height: 10rem;
@@ -489,7 +532,6 @@
     padding: 5px;
     display: flex;
     justify-content: center;
-    /* background-color: #fff; */
   }
   .line_cont {
     width: 100%;
@@ -499,7 +541,6 @@
     align-items: center;
     justify-content: center;
     gap: 0.3rem;
-    /* background-color: yellow; */
   }
   .gauge_chart_cont {
     height: 10rem;
@@ -508,7 +549,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    /* background-color: green; */
   }
 }
 
@@ -525,7 +565,6 @@
     flex-direction: column;
     align-items: center;
     margin-top: 0rem;
-    /* background-color: bisque; */
   }
   .gauge_chart_cont {
     height: 6rem;
@@ -535,7 +574,6 @@
     align-self: center;
     align-items: center;
     justify-content: space-evenly;
-    /* background-color: green; */
   }
   .gauge_chart_cont span {
     margin-top: 0.5rem;
@@ -547,7 +585,6 @@
     padding: 5px;
     display: flex;
     justify-content: center;
-    /* background-color: #fff; */
   }
 }
 
@@ -568,7 +605,6 @@
     flex-direction: column;
     align-items: center;
     margin-top: 0rem;
-    /* background-color: bisque; */
   }
   .gauge_chart_cont {
     height: 5rem;
@@ -578,7 +614,6 @@
     align-self: center;
     align-items: center;
     justify-content: space-evenly;
-    /* background-color: green; */
   }
   .gauge_chart_cont span {
     display: none;
@@ -588,7 +623,6 @@
     width: 100%;
     padding: 5px;
     margin-top: 0.3rem;
-    /* background-color: #fff; */
   }
 
   .line_chart_cont_sub {
@@ -598,7 +632,6 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 1rem;
-    /* background-color: aquamarine; */
   }
   .line_cont {
     width: 100%;
@@ -608,7 +641,6 @@
     align-items: center;
     justify-content: center;
     gap: 0.3rem;
-    /* background-color: yellow; */
   }
 
   .label_cont {
@@ -618,10 +650,17 @@
   }
 
   .label_cont_text {
+    min-width: 31px;
     font-size: var(--size-4);
     color: var(--color-mid-white);
   }
 
+  .label_cont_text_new {
+    text-align: right;
+    min-width: 31px;
+    font-size: var(--size-4);
+    color: var(--color-mid-white);
+  }
   .line_out {
     width: 88%;
     height: 12px;
@@ -637,7 +676,7 @@
 
   .line_in {
     width: 10%;
-    height: 80%;
+    height: 65%;
     border-radius: 5px;
     background-color: var(--color-btn);
   }

@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./donutChart.module.css";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
-const DonutChart = () => {
+const DonutChart = ({ valueOne, valueTwo }) => {
   // Sample data for the chart
   const data = [
-    { name: "Risk", value: 12 },
-    { name: "Reward", value: 19 },
+    { name: "Risk", value: valueOne },
+    { name: "Reward", value: valueTwo },
   ];
 
   // Define colors for the chart

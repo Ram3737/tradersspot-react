@@ -1,12 +1,15 @@
 import styles from "../analysisStatsPage.module.css";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
+import { AuthContext } from "../../../../components/store/context/authContextProvider";
 import DonutChart from "../../../../components/charts/donutChart";
 import GaugeChart from "react-gauge-chart";
 import ToggleSwitch from "../../../../components/toggleSwitch/toggleSwitch";
 
 function VisualContainer() {
+  const authCtx = useContext(AuthContext);
   const arr = [1, 2, 3, 4, 5];
+  const [barChartValue, setBarChartValue] = useState([]);
+  const [gaugeChartValue, setGaugeChartValue] = useState(0.6);
   const [windowWidth, setWindowWidth] = useState(undefined);
 
   useEffect(() => {
@@ -21,6 +24,42 @@ function VisualContainer() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    if (
+      authCtx.freeSwingAnalysisStats.reversedMonthlyTotals &&
+      authCtx.swingAnalysisStats.reversedMonthlyTotals
+    ) {
+      setBarChartValue(
+        authCtx.analysisToDisplayBeforeLogin
+          ? authCtx.freeSwingAnalysisStats?.reversedMonthlyTotals
+          : authCtx.swingAnalysisStats?.reversedMonthlyTotals
+      );
+
+      const risk = authCtx.analysisToDisplayBeforeLogin
+        ? authCtx.freeSwingAnalysisStats?.totalRiskLastFiveMonth > 0
+          ? authCtx.freeSwingAnalysisStats.totalRiskLastFiveMonth
+          : 10
+        : (authCtx.swingAnalysisStats.totalRiskLastFiveMonth > 0
+            ? authCtx.swingAnalysisStats.totalRiskLastFiveMonth
+            : 10) || 10;
+
+      const reward = authCtx.analysisToDisplayBeforeLogin
+        ? authCtx.freeSwingAnalysisStats.totalRewardLastFiveMonth > 0
+          ? authCtx.freeSwingAnalysisStats.totalRewardLastFiveMonth
+          : 50
+        : (authCtx.swingAnalysisStats.totalRewardLastFiveMonth > 0
+            ? authCtx.swingAnalysisStats.totalRewardLastFiveMonth
+            : 30) || 50;
+      const percentage = reward / (risk + reward);
+      setGaugeChartValue(percentage);
+    }
+  }, [
+    authCtx.analysisToDisplayBeforeLogin,
+    authCtx.freeSwingAnalysisStats,
+    authCtx.swingAnalysisStats,
+  ]);
+
   return windowWidth > 970 ? (
     <div className={styles.visual_cont}>
       <div className={styles.heading_cont}>
@@ -29,32 +68,63 @@ function VisualContainer() {
       </div>
 
       <div className={styles.pie_chart_cont}>
-        <DonutChart />
+        <DonutChart
+          valueOne={
+            authCtx.analysisToDisplayBeforeLogin
+              ? authCtx.freeSwingAnalysisStats?.totalRiskLastFiveMonth > 0
+                ? authCtx.freeSwingAnalysisStats.totalRiskLastFiveMonth
+                : 10
+              : (authCtx.swingAnalysisStats.totalRiskLastFiveMonth > 0
+                  ? authCtx.swingAnalysisStats.totalRiskLastFiveMonth
+                  : 10) || 10
+          }
+          valueTwo={
+            authCtx.analysisToDisplayBeforeLogin
+              ? authCtx.freeSwingAnalysisStats.totalRewardLastFiveMonth > 0
+                ? authCtx.freeSwingAnalysisStats.totalRewardLastFiveMonth
+                : 50
+              : (authCtx.swingAnalysisStats.totalRewardLastFiveMonth > 0
+                  ? authCtx.swingAnalysisStats.totalRewardLastFiveMonth
+                  : 30) || 50
+          }
+        />
         {/* <span>Risk/Reward</span> */}
       </div>
 
       <div className={styles.line_chart_cont}>
         <div className={styles.line_chart_cont_sub}>
-          {arr.map((item, index) => (
-            <div key={index} className={styles.line_cont}>
-              <div className={styles.label_cont}>
-                <span
-                  className={`${styles.label_cont_text} ${{ marginTop: 0 }}`}
-                >
-                  {`${1}:${2}`}
-                </span>
-                <span className={[styles.label_cont_text]}>{"jan"}</span>
+          {barChartValue.length > 0 &&
+            barChartValue.map((item, index) => (
+              <div key={index} className={styles.line_cont}>
+                <div className={styles.label_cont}>
+                  <span
+                    className={`${styles.label_cont_text} ${{ marginTop: 0 }}`}
+                  >
+                    {`${item.risk}:${item.reward}`}
+                  </span>
+                  <span className={[styles.label_cont_text]}>{item.month}</span>
+                </div>
+                <div className={styles.line_out}>
+                  <div
+                    className={styles.line_in}
+                    style={{
+                      width: `${
+                        item.reward * 5 >= 100 ? 100 : item.reward * 5
+                      }%`,
+                    }}
+                  ></div>
+                </div>
               </div>
-              <div className={styles.line_out}>
-                <div className={styles.line_in}></div>
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
 
       <div className={styles.gauge_chart_cont}>
-        <GaugeChart id="gauge-chart2" nrOfLevels={20} percent={0.86} />
+        <GaugeChart
+          id="gauge-chart2"
+          nrOfLevels={20}
+          percent={gaugeChartValue}
+        />
         <span>Overall percentage</span>
       </div>
     </div>
@@ -67,31 +137,62 @@ function VisualContainer() {
 
       <div className={styles.visual_cont_charts}>
         <div className={styles.pie_chart_cont}>
-          <DonutChart />
+          <DonutChart
+            valueOne={
+              authCtx.analysisToDisplayBeforeLogin
+                ? authCtx.freeSwingAnalysisStats?.totalRiskLastFiveMonth > 0
+                  ? authCtx.freeSwingAnalysisStats.totalRiskLastFiveMonth
+                  : 10
+                : (authCtx.swingAnalysisStats.totalRiskLastFiveMonth > 0
+                    ? authCtx.swingAnalysisStats.totalRiskLastFiveMonth
+                    : 10) || 10
+            }
+            valueTwo={
+              authCtx.analysisToDisplayBeforeLogin
+                ? authCtx.freeSwingAnalysisStats.totalRewardLastFiveMonth > 0
+                  ? authCtx.freeSwingAnalysisStats.totalRewardLastFiveMonth
+                  : 50
+                : (authCtx.swingAnalysisStats.totalRewardLastFiveMonth > 0
+                    ? authCtx.swingAnalysisStats.totalRewardLastFiveMonth
+                    : 30) || 50
+            }
+          />
           {/* <span>Risk/Reward</span> */}
         </div>
 
         <div className={styles.line_chart_cont}>
           <div className={styles.line_chart_cont_sub}>
-            {arr.map((item, index) => (
-              <div key={index} className={styles.line_cont}>
-                <span
-                  className={`${styles.label_cont_text} ${{ marginTop: 0 }}`}
-                >
-                  {`${1}:${2}`}
-                </span>
+            {barChartValue.length > 0 &&
+              barChartValue.map((item, index) => (
+                <div key={index} className={styles.line_cont}>
+                  <span
+                    className={`${styles.label_cont_text} ${{ marginTop: 0 }}`}
+                  >
+                    {`${item.risk}:${item.reward}`}
+                  </span>
 
-                <div className={styles.line_out}>
-                  <div className={styles.line_in}></div>
+                  <div className={styles.line_out}>
+                    <div
+                      className={styles.line_in}
+                      style={{
+                        height: `${
+                          item.reward * 5 >= 100 ? 100 : item.reward * 5
+                        }%`,
+                      }}
+                    ></div>
+                  </div>
+                  <span className={[styles.label_cont_text]}>{item.month}</span>
                 </div>
-                <span className={[styles.label_cont_text]}>{"jan"}</span>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
 
         <div className={styles.gauge_chart_cont}>
-          <GaugeChart id="gauge-chart2" nrOfLevels={20} percent={0.86} />
+          <GaugeChart
+            id="gauge-chart2"
+            nrOfLevels={20}
+            percent={gaugeChartValue}
+          />
           <span>Overall percentage</span>
         </div>
       </div>
@@ -106,29 +207,79 @@ function VisualContainer() {
       <div className={styles.visual_cont_charts}>
         <div className={styles.pie_gauge_Container}>
           <div className={styles.pie_chart_cont}>
-            <DonutChart />
+            <DonutChart
+              valueOne={
+                authCtx.analysisToDisplayBeforeLogin
+                  ? authCtx.freeSwingAnalysisStats?.totalRiskLastFiveMonth > 0
+                    ? authCtx.freeSwingAnalysisStats.totalRiskLastFiveMonth
+                    : 10
+                  : (authCtx.swingAnalysisStats.totalRiskLastFiveMonth > 0
+                      ? authCtx.swingAnalysisStats.totalRiskLastFiveMonth
+                      : 10) || 10
+              }
+              valueTwo={
+                authCtx.analysisToDisplayBeforeLogin
+                  ? authCtx.freeSwingAnalysisStats.totalRewardLastFiveMonth > 0
+                    ? authCtx.freeSwingAnalysisStats.totalRewardLastFiveMonth
+                    : 50
+                  : (authCtx.swingAnalysisStats.totalRewardLastFiveMonth > 0
+                      ? authCtx.swingAnalysisStats.totalRewardLastFiveMonth
+                      : 30) || 50
+              }
+            />
           </div>
           <div className={styles.gauge_chart_cont}>
-            <GaugeChart id="gauge-chart2" nrOfLevels={20} percent={0.86} />
+            <GaugeChart
+              id="gauge-chart2"
+              nrOfLevels={20}
+              percent={gaugeChartValue}
+            />
             <span>Overall percentage</span>
           </div>
         </div>
         <div className={styles.line_chart_cont}>
           <div className={styles.line_chart_cont_sub}>
-            {arr.map((item, index) => (
-              <div key={index} className={styles.line_cont}>
-                <span
-                  className={`${styles.label_cont_text} ${{ marginTop: 0 }}`}
-                >
-                  {`${1}:${2}`}
-                </span>
+            {barChartValue.length > 0 &&
+              barChartValue.map((item, index) => (
+                <div key={index} className={styles.line_cont}>
+                  <span
+                    className={`${styles.label_cont_text} ${{
+                      marginTop: 0,
+                    }}`}
+                  >
+                    {`${item.risk}:${item.reward}`}
+                  </span>
 
-                <div className={styles.line_out}>
-                  <div className={styles.line_in}></div>
+                  <div className={styles.line_out}>
+                    <div
+                      className={styles.line_in}
+                      style={{
+                        width:
+                          windowWidth <= 366
+                            ? `${
+                                item.reward * 5 >= 100 ? 100 : item.reward * 5
+                              }%`
+                            : undefined,
+                        height:
+                          windowWidth >= 367
+                            ? `${
+                                item.reward * 5 >= 100 ? 100 : item.reward * 5
+                              }%`
+                            : undefined,
+                      }}
+                    ></div>
+                  </div>
+                  <span
+                    className={
+                      windowWidth >= 367
+                        ? styles.label_cont_text
+                        : styles.label_cont_text_new
+                    }
+                  >
+                    {item.month}
+                  </span>
                 </div>
-                <span className={[styles.label_cont_text]}>{"jan"}</span>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>

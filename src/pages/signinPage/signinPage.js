@@ -1,10 +1,13 @@
 import styles from "./signinPage.module.css";
 import { useNavigate } from "react-router-dom";
 import ButtonComponent from "../../components/buttonComponent/buttonComponent";
-import { CallPostApiServicesWithTkn } from "../../utils/webServices/apiCalls";
-import { useState } from "react";
+import { CallPostApiServices } from "../../utils/webServices/apiCalls";
+import { AuthContext } from "../../components/store/context/authContextProvider";
+import { useState, useContext } from "react";
+import { jwtDecode } from "jwt-decode";
 
 function SigninPage() {
+  const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
   const [enteredEmail, setEnteredEmail] = useState(null);
   const [enteredPassword, setEnteredPassword] = useState(null);
@@ -16,53 +19,26 @@ function SigninPage() {
       return;
     }
 
-    CallPostApiServicesWithTkn(
-      `/user/signin-user`,
+    CallPostApiServices(
+      `/user/signin-user-web`,
       {
         email: enteredEmail,
         password: enteredPassword,
       },
       (response) => {
         if (response.status === 200) {
-          console.log("login data", response.data);
-
           localStorage.setItem("token", response.data.token);
-          localStorage.setItem("paid", response.data.paid.toString());
-          localStorage.setItem("courseType", response.data.courseType);
-          localStorage.setItem("userType", response.data.userType);
-          localStorage.setItem("email", response.data.email);
-          localStorage.setItem("name", response.data.name);
-          localStorage.setItem("mobileNo", response.data.mobileNumber);
-
           setEnteredEmail(null);
           setEnteredPassword(null);
-
-          navigate("/course");
-          // if (response.data.userType === "admin") {
-          //   // navigation.navigate("adminLoggedIn");
-          //   return;
-          // }
-          // if (
-          //   response.data.token &&
-          //   response.data.courseType !== "none" &&
-          //   response.data.paid
-          // ) {
-          // } else if (
-          //   response.data.token &&
-          //   response.data.courseType !== "none"
-          // ) {
-          //   navigation.navigate("courses");
-          // } else {
-          //   navigation.navigate("dashboard");
-          // }
+          authCtx.getUserDetails();
         }
       },
       (err) => {
-        // setBtnLoader(false);
         console.log(
           "errr",
           err.message || err.response?.data.message || "hiiiii"
         );
+        console.log(err);
         //   if (err.response?.data.message) {
         //     console.log(1);
         //     setErrFromBackend(err.response.data.message);

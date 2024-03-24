@@ -90,13 +90,13 @@ function MainNavigation(props) {
                     <Link to={"/analyses"}>Analyses</Link>
                   </li>
                   <li>
-                    <Link to={""}>Pricing</Link>
+                    <Link to={"/upgrade"}>Upgrade</Link>
                   </li>
                 </ul>
               ) : isValidToken && !paid ? (
                 <ul>
                   <li>
-                    <Link to={"/normal-user"}>Dashboard</Link>
+                    <Link to={"/normal-user-dashboard"}>Dashboard</Link>
                   </li>
                   <li>
                     <Link to={"/analysis-statistics"}>Analyses</Link>
@@ -105,7 +105,7 @@ function MainNavigation(props) {
                     <Link to={""}>Free course</Link>
                   </li>
                   <li>
-                    <Link to={""}>Pricing</Link>
+                    <Link to={"/normal-user-pricing"}>Pricing</Link>
                   </li>
                 </ul>
               ) : (
@@ -117,7 +117,7 @@ function MainNavigation(props) {
                     <Link to={"/analysis-statistics"}>Analysis statistics</Link>
                   </li>
                   <li>
-                    <Link to={""}>Pricing</Link>
+                    <Link to={"/pricing"}>Pricing</Link>
                   </li>
                 </ul>
               )}
@@ -176,23 +176,57 @@ function MainNavigation(props) {
                       onClick={menuBtnHandler}
                     >
                       <div className={styles.menu_container}>
-                        <div className={styles.menu_option_container}>
-                          <div
-                            className={styles.menu_option}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <span>Dashboard</span>
+                        {isValidToken && paid ? (
+                          <div className={styles.menu_option_container}>
+                            <div
+                              className={styles.menu_option}
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <Link to={"/course"}>Courses</Link>
+                            </div>
+                            <div className={styles.menu_option}>
+                              <Link to={"/analyses"}>Analyses</Link>
+                            </div>
+                            <div className={styles.menu_option}>
+                              <Link to={"/upgrade"}>Upgrade</Link>
+                            </div>
                           </div>
-                          <div className={styles.menu_option}>
-                            <Link to={"/analysis-statistics"}>
-                              Analysis statistics
-                            </Link>
+                        ) : isValidToken && !paid ? (
+                          <div className={styles.menu_option_container}>
+                            <div
+                              className={styles.menu_option}
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <Link to={"/normal-user-dashboard"}>
+                                Dashboard
+                              </Link>
+                            </div>
+                            <div className={styles.menu_option}>
+                              <Link to={"/analysis-statistics"}>Analyses</Link>
+                            </div>
+                            <div className={styles.menu_option}>
+                              <Link to={""}>Free course</Link>
+                            </div>
+                            <div className={styles.menu_option}>
+                              <Link to={"/normal-user-pricing"}>Pricing</Link>
+                            </div>
                           </div>
-                          <div className={styles.menu_option}>
-                            <span>Pricing</span>
+                        ) : (
+                          <div className={styles.menu_option_container}>
+                            <div
+                              className={styles.menu_option}
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <Link to={"/dashboard"}>Dashboard</Link>
+                            </div>
+                            <div className={styles.menu_option}>
+                              <Link to={"/analysis-statistics"}>Analyses</Link>
+                            </div>
+                            <div className={styles.menu_option}>
+                              <Link to={"/pricing"}>Pricing</Link>
+                            </div>
                           </div>
-                        </div>
-
+                        )}
                         {!isValidToken ? (
                           <div className={styles.menu_option_btn_container}>
                             <ButtonComponent

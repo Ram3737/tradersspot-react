@@ -21,8 +21,11 @@ export const AuthContext = createContext({
   setAnalysisToDisplayBeforeLogin: () => {},
   analysisToDisplayAfterLogin: "",
   setAnalysisToDisplayAfterLogin: () => {},
+  userSelectedCourseFromPricingPage: "",
+  setUserSelectedCourseFromPricingPage: () => {},
   registerSignupToggle: "",
   userSelectedCourse: "",
+  setUserSelectedCourse: () => {},
   swingAnalysisStats: "",
   freeSwingAnalysisStats: "",
   allBreakoutAnalyses: "",
@@ -59,6 +62,10 @@ function AuthContextProvider({ children }) {
   const [analysisToDisplayAfterLogin, setAnalysisToDisplayAfterLogin] =
     useState(false);
   const [mainLoader, setMainLoader] = useState(false);
+  const [
+    userSelectedCourseFromPricingPage,
+    setUserSelectedCourseFromPricingPage,
+  ] = useState("none");
 
   function authenticationHandler() {
     setIsAuthenticated(!isAuthenticated);
@@ -159,7 +166,7 @@ function AuthContextProvider({ children }) {
                 !decodedToken.paid
               ) {
                 setTimeout(() => {
-                  navigate("/normal-user");
+                  navigate("/normal-user-dashboard");
                 }, 2000);
               }
             }
@@ -196,8 +203,14 @@ function AuthContextProvider({ children }) {
   }, [swingAnalysisStats, freeSwingAnalysisStats]);
 
   function logout() {
+    setMainLoader(true);
     localStorage.clear();
+    setUserSelectedCourse("none");
+    setUserSelectedCourseFromPricingPage("none");
     getUserDetails();
+    setTimeout(() => {
+      setMainLoader(false);
+    }, 2000);
   }
 
   const value = {
@@ -218,6 +231,9 @@ function AuthContextProvider({ children }) {
     setAnalysisToDisplayAfterLogin: setAnalysisToDisplayAfterLogin,
     registerSignupToggle: registerSignupToggle,
     userSelectedCourse: userSelectedCourse,
+    setUserSelectedCourse: setUserSelectedCourse,
+    userSelectedCourseFromPricingPage: userSelectedCourseFromPricingPage,
+    setUserSelectedCourseFromPricingPage: setUserSelectedCourseFromPricingPage,
     swingAnalysisStats: swingAnalysisStats,
     freeSwingAnalysisStats: freeSwingAnalysisStats,
     allBreakoutAnalyses: allBreakoutAnalyses,

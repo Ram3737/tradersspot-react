@@ -8,7 +8,7 @@ function BannerContainer() {
 
   function signupBtnHandler(event) {
     event.preventDefault();
-    navigate("signup");
+    navigate("/signup");
   }
 
   return (

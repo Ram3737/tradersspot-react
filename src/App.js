@@ -16,6 +16,8 @@ import { useContext } from "react";
 import AnalysisPage from "./pages/afterLoggedInPages/analysisPage/analysisPage";
 import TechnicalContentPage from "./pages/afterLoggedInPages/myCoursesPage/contents/technicalContentPage";
 import FundamentalContentPage from "./pages/afterLoggedInPages/myCoursesPage/contents/fundamentalContentPage";
+import PricingPage from "./pages/beforeLoggedInPages/pricingPage/pricingPage";
+import CourseDetailsPage from "./pages/beforeLoggedInPages/pricingPage/detailsPage/courseDetailsPage";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -37,11 +39,21 @@ function App() {
               path="/fundamental-content"
               element={<FundamentalContentPage />}
             />
+            <Route exact path="/upgrade" element={<PricingPage />} />
+            <Route
+              exact
+              path="/course-details"
+              element={<CourseDetailsPage />}
+            />
             <Route exact path="*" element={<Navigate to="/course" replace />} />
           </Routes>
         ) : authCtx.isValidToken && !authCtx.paid ? (
           <Routes>
-            <Route exact path="/normal-user" element={<DashboardPage />} />
+            <Route
+              exact
+              path="/normal-user-dashboard"
+              element={<DashboardPage />}
+            />
             <Route
               exact
               path="/analysis-statistics"
@@ -49,8 +61,24 @@ function App() {
             />
             <Route
               exact
+              path="/normal-user-pricing"
+              element={<PricingPage />}
+            />
+            <Route
+              exact
+              path="/course-details"
+              element={
+                authCtx.userSelectedCourseFromPricingPage !== "none" ? (
+                  <CourseDetailsPage />
+                ) : (
+                  <Navigate to="/normal-user-pricing" replace />
+                )
+              }
+            />
+            <Route
+              exact
               path="*"
-              element={<Navigate to="/normal-user" replace />}
+              element={<Navigate to="/normal-user-dashboard" replace />}
             />
           </Routes>
         ) : (
@@ -64,6 +92,18 @@ function App() {
             />
             <Route exact path="/signin" element={<SigninPage />} />
             <Route exact path="/signup" element={<SignupPage />} />
+            <Route exact path="/pricing" element={<PricingPage />} />
+            <Route
+              exact
+              path="/course-details"
+              element={
+                authCtx.userSelectedCourseFromPricingPage !== "none" ? (
+                  <CourseDetailsPage />
+                ) : (
+                  <Navigate to="/pricing" replace />
+                )
+              }
+            />
             <Route
               exact
               path="/privacy-policy"

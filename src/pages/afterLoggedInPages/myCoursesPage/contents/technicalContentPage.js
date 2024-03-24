@@ -212,7 +212,7 @@ function TechnicalContentPage() {
     }
     setIsLoading(true);
     CallGetApiServicesWithTkn(
-      `/course/technical-course-content`,
+      `/course/technical-course-content-web`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -265,16 +265,10 @@ function TechnicalContentPage() {
                   width: "100%",
                   height: "100%",
                 }}
-              >
-                <iframe
-                  src="https://player.vimeo.com/video/575809640?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                  frameborder="0"
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-                  width="100%"
-                  height="100%"
-                  title="chartsandcandlesticks.mp4"
-                ></iframe>
-              </div>
+                dangerouslySetInnerHTML={{
+                  __html: selectedContentToDisplay?.link || "Nill",
+                }}
+              />
             </div>
             <div className={styles.desc_cont}>
               <div className={styles.desc_card}>

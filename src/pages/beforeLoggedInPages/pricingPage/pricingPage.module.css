@@ -1,0 +1,183 @@
+.pricing_container_main {
+  max-width: 1435px;
+  min-height: calc(100dvh - 3.75rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  margin: auto;
+  gap: 4rem;
+  /* background-color: red; */
+}
+
+.pricing_text {
+  width: 95%;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--color-white);
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.pricing_container_sub {
+  width: 95%;
+  padding: 1rem;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  column-gap: 2rem;
+  row-gap: 5rem;
+  /* background-color: blue; */
+}
+
+.pricing_card {
+  width: 20rem;
+  height: fit-content;
+  padding-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-main-bg);
+}
+
+.card_img_cont {
+  width: 100%;
+  height: 8.5rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: var(--color-main-bg);
+  position: relative;
+}
+
+.card_img_cont_sub_one {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-image: url("../../../assets/images/course_one.jpg");
+  background-size: cover;
+  opacity: 0.2;
+}
+
+.card_img_cont_sub_two {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-image: url("../../../assets/images/course_two.jpg");
+  background-size: cover;
+  opacity: 0.2;
+}
+
+.card_img_cont_sub_three {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-image: url("../../../assets/images/course_three.jpg");
+  background-size: cover;
+  opacity: 0.2;
+}
+
+.card_img_cont > span {
+  width: 100%;
+  position: absolute;
+  margin: 0 auto;
+  padding: 0.5rem;
+  top: 32%;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--color-btn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.pricing_card_float {
+  position: absolute;
+  top: -15%;
+  left: 24.5%;
+  height: 2.5rem;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-main-bg);
+}
+
+.pricing_card_float_sub {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pricing_card_float_sub span {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+.pricing_card_text_cont {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.pricing_card_text_cont > span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-3);
+}
+
+.pricing_card_features_text_cont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-align: center;
+}
+
+.pricing_card_features_text_cont span {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-mid-white);
+}
+
+.btn_cont {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 772px) {
+  .pricing_container_main {
+    max-width: 1435px;
+    min-height: calc(100dvh - 3.75rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem;
+    margin: auto;
+    gap: 3rem;
+    /* background-color: red; */
+  }
+}

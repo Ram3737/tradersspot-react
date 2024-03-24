@@ -6,7 +6,6 @@ import fundamentalTradingImage from "../../../assets/images/fundamental_trading_
 import styles from "./myCourses.module.css";
 import { IoIosArrowForward } from "react-icons/io";
 import ButtonComponent from "../../../components/buttonComponent/buttonComponent";
-import TechnicalContentPage from "./contents/technicalContentPage";
 
 function MyCoursePage() {
   const authCtx = useContext(AuthContext);
@@ -14,6 +13,10 @@ function MyCoursePage() {
 
   function technicalContentBtnHandler() {
     navigate("/technical-content");
+  }
+
+  function fundamentalContentBtnHandler() {
+    navigate("/fundamental-content");
   }
 
   return (
@@ -52,7 +55,7 @@ function MyCoursePage() {
               <span>20</span>
               <span>Total Videos</span>
             </div>
-            <ButtonComponent>
+            <ButtonComponent handler={fundamentalContentBtnHandler}>
               <IoIosArrowForward size={18} color="#000" />
             </ButtonComponent>
           </div>
